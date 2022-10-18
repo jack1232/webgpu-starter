@@ -93,19 +93,21 @@ const draw = (i: InitArgs, p: PipelineArgs ) => {
     i.device.queue.submit([commandEncoder.finish()]);
 }
 
+var gui = new dat.GUI();
+document.querySelector('#gui').append(gui.domElement);
+const params = {
+    color: '#ff0000',
+};
+var colorGui = gui.addColor(params, 'color');
+
 const run = async () => {
     const canvas = document.getElementById('canvas-webgpu') as HTMLCanvasElement;
     const i = await InitWebGPU(canvas);
     const p = await createPipeline(i.device, i.format);
     draw(i, p);
 
-    // update color
-    var gui = new dat.GUI();
-    document.querySelector('#gui').append(gui.domElement);
-    const params = {
-        color: '#ff0000',
-    };
-    gui.addColor(params, 'color').onChange(function(color:any){
+    // update color     
+    colorGui.onChange(function(color:any){
         i.device.queue.writeBuffer(p.uniformBuffer, 0, hex2rgb(color));
         p.uniformBuffer = p.uniformBuffer;
         draw(i, p);
@@ -121,6 +123,7 @@ const run = async () => {
 }
 
 run();
+
 
 
 
