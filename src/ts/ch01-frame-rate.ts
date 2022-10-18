@@ -10,7 +10,7 @@ document.querySelector('.right-div').innerHTML =
 	<h3>using requestAnimationFrame only:</h3>
 	<div style="color:red">FPS: <span id="fpsValue0" class="mr-3"></span> | <span class="ml-3">Avarage FPS:</span> <span id="avgFpsValue0"></div><br>
 
-	<h3>using requestAnimationFrame and requestIdleCallback:</h3>	
+	<h3>using requestAnimationFrame and requestIdleCallback:</h3><br>	
 	<div style="color:red">FPS: <span id="fpsValue" class="mr-3"></span> | <span class="ml-3">Avarage FPS:</span> <span id="avgFpsValue"></div>
 </div>
 `;
