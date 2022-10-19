@@ -1,23 +1,18 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const fs = require('fs');
-const glob = require("glob");
 
-const entry = glob.sync("src/ts/*.ts")
-    .reduce((x, y) => Object.assign(x, {
-        [y.split('/')[2].split('.')[0]]: './' + y,
-    }), {});
-
-let htmlPageNames = [];
-const pages = fs.readdirSync('./src/html');
-pages.forEach(page => {
-    if(page.endsWith('.html')){
-        htmlPageNames.push(page.split('.html')[0]);
+var tsEntry = {};
+const tsFiles = fs.readdirSync('./src/ts');
+tsFiles.forEach(file => {
+    if(file.endsWith('.ts')){
+        let nm = file.split('.ts')[0];
+        tsEntry[nm] = './src/ts/' + nm + '.ts';
     }
 });
 
 module.exports = {
-    entry,
+    entry: tsEntry,
     output: {
         clean: true,
     },
@@ -48,14 +43,6 @@ module.exports = {
     resolve: {
         extensions: [".tsx", ".ts", ".js"],
     },
-    /*plugins: htmlPageNames.map(name => {
-        return new HtmlWebpackPlugin({
-            template: `./src/html/${name}.html`, // relative path to the html files
-            filename: `${name}.html`, // output html files
-            chunks: [`${name}`], // respective js files
-            inject: false,
-        });
-    })*/
     plugins:[
         new HtmlWebpackPlugin({
             filename: 'index.html',
