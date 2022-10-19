@@ -1,3 +1,5 @@
+const Stats = require('stats.js');
+
 document.querySelector('.right-div').innerHTML = 
 `<div class="m-2">
 	<h2>Calculate FPS</h2>
@@ -11,9 +13,16 @@ document.querySelector('.right-div').innerHTML =
 	<div style="color:red">FPS: <span id="fpsValue0" class="mr-3"></span> | <span class="ml-3">Avarage FPS:</span> <span id="avgFpsValue0"></div><br>
 
 	<h3>using requestAnimationFrame and requestIdleCallback:</h3><br>	
-	<div style="color:red">FPS: <span id="fpsValue" class="mr-3"></span> | <span class="ml-3">Avarage FPS:</span> <span id="avgFpsValue"></div>
+	<div style="color:red">FPS: <span id="fpsValue" class="mr-3"></span> | <span class="ml-3">Avarage FPS:</span> <span id="avgFpsValue"></div><br>
+
+	<h3>using stats.js</h3>
+	<div id="id-stats"></div>
 </div>
 `;
+
+var stats = new Stats();
+stats.dom.style.cssText = 'position:relative;top:0;left:0';
+var stats_div = document.querySelector('#id-stats').appendChild(stats.dom);
 
 var fpsDiv0 = document.getElementById('fpsValue0');
 var avgFpsDiv0 = document.getElementById('avgFpsValue0');
@@ -62,32 +71,24 @@ function updateLabel( fps: number) {
 	avgFpsDiv.textContent = avgFps.toFixed(0).toString();
 }
 
-// Deduce framerate based on remaining time per frame
-// Goal is 60FPS - this should not be hardcoded!
 function fpsCallback( d: any) {
-
-	// Calculate the actual time the frame took
-	// and the according FPS
 	var goal = 1000 / refreshRate;
 	var elapsed = goal - d.timeRemaining();
 	rICFps = goal * refreshRate / elapsed;
-
-	// Tell the FPS meter that we are over 60FPS
 	hasrICBeenCalledForThisFrame = true;	
 }
 
 function sleep( ms: number ) {
-
 	var t = performance.now();
 	do{ }
 	while( performance.now() - t < ms );
-
 }
 
-function render() {
+function animate() {
+	stats.begin();
+
 	if(!document.getElementById('refresh')) return;
 	refreshRate = parseFloat((document.getElementById('refresh') as HTMLInputElement).value);
-	// Simulate some rendering code
 	sleep( frameTime );
 
 	var dt = performance.now() - start;
@@ -101,16 +102,20 @@ function render() {
 	mixedFps = hasrICBeenCalledForThisFrame ? rICFps : fps;
 	mixedFps0 = fps0;
 
-	// Queue the call to render() for the next frame
 	hasrICBeenCalledForThisFrame = false;
+
+	stats.end();
 	requestIdleCallback( fpsCallback );
-	requestAnimationFrame( render );
+	requestAnimationFrame(animate);
 	frame++;
 }
 
-
-// Start rendering
-render();
+animate();
 setInterval( function() {
 	updateLabel( mixedFps );
 }, 200);
+
+
+
+
+

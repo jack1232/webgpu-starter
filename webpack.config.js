@@ -2,17 +2,17 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const fs = require('fs');
 
-var tsEntry = {};
+var entry = {};
 const tsFiles = fs.readdirSync('./src/ts');
 tsFiles.forEach(file => {
     if(file.endsWith('.ts')){
         let nm = file.split('.ts')[0];
-        tsEntry[nm] = './src/ts/' + nm + '.ts';
+        entry[nm] = './src/ts/' + nm + '.ts';
     }
 });
 
 module.exports = {
-    entry: tsEntry,
+    entry,
     output: {
         clean: true,
     },
