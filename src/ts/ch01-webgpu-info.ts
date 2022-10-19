@@ -10,11 +10,12 @@ document.querySelector('.right-div').innerHTML = `
 `;
 
 const getGPUInfo = async () => {
-    const div = document.querySelector('#id-result');
+    const div = document.querySelector('#id-result') as HTMLDivElement;
     try{
         if(!navigator.gpu){
+            div.style.lineHeight = "150%";
             div.innerHTML = CheckWebGPUSupport;
-            throw new Error('The Browser does not support WebGPU!');
+            throw new Error('The Browser does not support WebGPU! ');
         }
         let ss = `<p>${CheckWebGPUSupport}</p>`;
         const adapter = await navigator.gpu.requestAdapter();
@@ -38,7 +39,7 @@ const getGPUInfo = async () => {
         div.innerHTML = ss;
 
     } catch(error:any) {
-        div.innerHTML = `<p>${CheckWebGPUSupport}</p> + <p>${error.message}</p>`;
+        throw new Error(error);
     }
 }
 getGPUInfo();
