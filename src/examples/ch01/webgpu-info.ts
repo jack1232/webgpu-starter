@@ -1,5 +1,4 @@
-import { CheckWebGPUSupport } from './common/helper';
-
+import { CheckWebGPUSupport } from '../../common/helper';
 
 document.querySelector('.right-div').innerHTML = `
     <div class="m-5">

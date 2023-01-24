@@ -34,8 +34,10 @@
     "webpack-dev-server": "^4.2.1"
   },
   "dependencies": {
+    "@types/dat.gui": "^0.7.7",
     "@webgpu/types": "^0.1.22",
     "dat-gui": "^0.5.0",
+    "dat.gui": "^0.7.9",
     "navigo": "^8.11.1",
     "stats.js": "^0.17.0"
   }

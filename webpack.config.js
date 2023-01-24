@@ -1,20 +1,34 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
-const fs = require('fs');
+const glob = require('glob');
 
 var entry = {};
-const tsFiles = fs.readdirSync('./src/ts');
-tsFiles.forEach(file => {
-    if(file.endsWith('.ts')){
-        let nm = file.split('.ts')[0];
-        entry[nm] = './src/ts/' + nm + '.ts';
-    }
-});
+glob.sync('./src/examples/**/*.ts').map(f => {    
+    let mf = f.split('/');
+    let len = mf.length;
+    if(mf[len-2].includes('ch')){
+        let fn = mf[len-2] + "-" + mf[len-1].slice(0, -3);
+        entry[fn] = f;
+    } else {
+        let fn = mf[len-1].slice(0, -3);
+        entry[fn] = f;
+    }    
+})
 
 module.exports = {
     entry,
     output: {
         clean: true,
+        path: path.resolve(__dirname, "dist"),
+        assetModuleFilename: (pth) => {
+        const fpath = path
+            .dirname(pth.filename)
+            .split("/")
+            .slice(1)
+            .join("/");
+        //return `${fpath}/[name].[hash][ext][query]`;
+        return `${fpath}/[hash][ext][query]`;
+        },
     },
     mode: "development",
     devtool: "inline-source-map",
