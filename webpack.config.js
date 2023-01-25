@@ -3,15 +3,17 @@ const path = require("path");
 const glob = require('glob');
 
 var entry = {};
-glob.sync('./src/examples/**/*.ts').map(f => {    
+glob.sync('./src/examples/**/*.ts', {
+    ignore: ['./src/examples/**/help*.*']
+}).map(f => {    
     let mf = f.split('/');
     let len = mf.length;
     if(mf[len-2].includes('ch')){
-        let fn = mf[len-2] + "-" + mf[len-1].slice(0, -3);
-        entry[fn] = f;
+        let en = mf[len-2] + "-" + mf[len-1].slice(0, -3);
+        entry[en] = f;
     } else {
-        let fn = mf[len-1].slice(0, -3);
-        entry[fn] = f;
+        let en = mf[len-1].slice(0, -3);
+        entry[en] = f;
     }    
 })
 
