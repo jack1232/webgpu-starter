@@ -16,7 +16,7 @@ const getGPUInfo = async () => {
             div.innerHTML = checkWebGPUSupport;
             throw new Error(checkWebGPUSupport);
         }
-        let ss = `<p>${Check WebGPU Support}</p>`;
+        let ss = `<p>${checkWebGPUSupport}</p>`;
         const adapter = await navigator.gpu.requestAdapter();
         const info = await adapter.requestAdapterInfo();
 
