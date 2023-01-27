@@ -1,4 +1,4 @@
-import { CheckWebGPUSupport } from '../../common/helper';
+import { checkWebGPUSupport } from '../../common/helper';
 
 document.querySelector('.right-div').innerHTML = `
     <div class="m-5">
@@ -13,10 +13,10 @@ const getGPUInfo = async () => {
     try{
         if(!navigator.gpu){
             div.style.lineHeight = "150%";
-            div.innerHTML = CheckWebGPUSupport;
-            throw new Error('The Browser does not support WebGPU! ');
+            div.innerHTML = checkWebGPUSupport;
+            throw new Error(checkWebGPUSupport);
         }
-        let ss = `<p>${CheckWebGPUSupport}</p>`;
+        let ss = `<p>${Check WebGPU Support}</p>`;
         const adapter = await navigator.gpu.requestAdapter();
         const info = await adapter.requestAdapterInfo();
 
