@@ -4,7 +4,7 @@ const glob = require('glob');
 
 var entry = {};
 glob.sync('./src/examples/**/*.ts', {
-    ignore: ['./src/examples/**/help*.*']
+    ignore: ['./src/examples/**/helper*.*']
 }).map(f => {    
     let mf = f.split('/');
     let len = mf.length;
