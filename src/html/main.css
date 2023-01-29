@@ -87,11 +87,17 @@ canvas {
   z-index: 1000;
 }
 
+#stats {
+  position: absolute;
+  left: -0.3em;
+  top: 0.7em;
+  z-index: 1000;
+}
+
 .fps {
 position: absolute;
 bottom: 0;
 right: 0;
-/*background-color:black;*/
 color: white;
 font-size: small;
 width: 220px;
