@@ -1,15 +1,6 @@
 import * as Stats from 'stats.js';
 import { GUI } from 'dat.gui';
 
-document.querySelector('.right-div').innerHTML = 
-`<div class="m-2">
-	<h2>FPS and Rendering Time</h2>
-    <div id="gui"></div>
-	<h3>using stats.js</h3>
-	<div id="id-stats"></div>
-</div>
-`;
-
 var stats = new Stats();
 var gui = new GUI();
 document.querySelector('#gui').append(gui.domElement);
