@@ -34,6 +34,24 @@ const loadJS = (url:string) => {
         body.style.overflow = 'hidden';
         right_div.style.overflow = 'hidden';
     }
+    
+    // html for the right_div
+    if(url.includes('frame-rate')){
+        right_div.innerHTML = 
+        `<div class="m-2">
+            <h2>FPS and Rendering Time</h2>
+            <div id="gui"></div>
+            <h3>using stats.js</h3>
+            <div id="id-stats"></div>
+        </div>`;
+    } else if (url.includes('webgpu-info')){
+        right_div.innerHTML = `
+        <div class="m-5">
+        <h3 style="line-height:10%;">Check whether your browser supports WebGPU</h3>
+        <div id="id-result" style="line-height:10%;"></div>
+        </div>
+        <br />`;
+    }
 }
 
 router.on({
