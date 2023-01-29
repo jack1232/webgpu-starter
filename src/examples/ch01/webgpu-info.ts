@@ -1,13 +1,5 @@
 import { checkWebGPUSupport } from '../../common/helper';
 
-document.querySelector('.right-div').innerHTML = `
-    <div class="m-5">
-    <h3 style="line-height:10%;">Check whether your browser supports WebGPU</h3>
-    <div id="id-result" style="line-height:10%;"></div>
-    </div>
-    <br />
-`;
-
 const getGPUInfo = async () => {
     const div = document.querySelector('#id-result') as HTMLDivElement;
     try{
