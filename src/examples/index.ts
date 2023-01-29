@@ -57,7 +57,7 @@ const loadJS = (url:string) => {
         right_div.innerHTML = `
         <canvas id="canvas-webgpu"></canvas>
         <div id="gui"></div>
-        <div id="id-stats"></div>`;
+        <div id="stats"></div>`;
     }
 }
 
