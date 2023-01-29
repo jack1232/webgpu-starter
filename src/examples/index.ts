@@ -53,6 +53,11 @@ const loadJS = (url:string) => {
         <div id="id-result" style="line-height:10%;"></div>
         </div>
         <br />`;
+    } else {
+        right_div.innerHTML = `
+        <canvas id="canvas-webgpu"></canvas>
+        <div id="gui"></div>
+        <div id="id-stats"></div>`;
     }
 }
 
