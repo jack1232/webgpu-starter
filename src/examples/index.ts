@@ -13,14 +13,16 @@ const examples = document.querySelectorAll('.example');
 const router = new Navigo("/", {hash: true});
 
 const loadJS = (url:string) => {
-    let ele = document.querySelector('#id-script');
-    if(ele){
-        ele.parentNode.removeChild(ele);
-    }
-    let script = document.createElement('script');
-    script.setAttribute('id', 'id-scipt');
-    script.setAttribute("src", url);
-    document.body.appendChild(script);
+    setTimeout(() => {
+        let ele = document.querySelector('#id-script');
+        if(ele){
+            ele.parentNode.removeChild(ele);
+        }
+        let script = document.createElement('script');
+        script.setAttribute('id', 'id-scipt');
+        script.setAttribute("src", url);
+        document.body.appendChild(script);
+    }, 20);
 
     let htm = document.querySelector('html');
     let body = document.querySelector('body');
