@@ -13,7 +13,8 @@ const examples = document.querySelectorAll('.example');
 const router = new Navigo("/", {hash: true});
 
 const loadJS = (url:string) => {
-    setTimeout(() => {
+    // load JS files
+    setTimeout(() => {       
         let ele = document.querySelector('#id-script');
         if(ele){
             ele.parentNode.removeChild(ele);
@@ -22,12 +23,12 @@ const loadJS = (url:string) => {
         script.setAttribute('id', 'id-scipt');
         script.setAttribute("src", url);
         document.body.appendChild(script);
-    }, 20);
+    }, 100);
 
     let htm = document.querySelector('html');
     let body = document.querySelector('body');
     let right_div = document.querySelector('.right-div') as HTMLDivElement;
-    if(url.includes('home') || url.includes('ch01-test1')){
+    if(url.includes('home')){
         htm.style.overflow = 'auto';
         body.style.overflow = 'auto';
         right_div.style.overflow = 'auto';
@@ -35,12 +36,12 @@ const loadJS = (url:string) => {
         htm.style.overflow = 'hidden';
         body.style.overflow = 'hidden';
         right_div.style.overflow = 'hidden';
-    }
-    
+    } 
+
     // html for the right_div
     if(url.includes('frame-rate')){
-        right_div.innerHTML = 
-        `<div class="m-2">
+        right_div.innerHTML = `
+        <div class="m-2">
             <h2>FPS and Rendering Time</h2>
             <div id="gui"></div>
             <h3>using stats.js</h3>
@@ -49,8 +50,8 @@ const loadJS = (url:string) => {
     } else if (url.includes('webgpu-info')){
         right_div.innerHTML = `
         <div class="m-5">
-        <h3 style="line-height:10%;">Check whether your browser supports WebGPU</h3>
-        <div id="id-result" style="line-height:10%;"></div>
+            <h3 style="line-height:10%;">Check whether your browser supports WebGPU</h3>
+            <div id="id-result" style="line-height:10%;"></div>
         </div>
         <br />`;
     } else {
@@ -67,8 +68,25 @@ router.on({
 });
 examples.forEach(example => {
     let name = (example as any).href.split('#');
+    // routes:
     if(name.length > 1 && name[1] !== 'index'){
         router.on(new RegExp(name[1]), () => { loadJS(name[1] + '.js'); });     
     }
 });
 router.resolve();
+
+var s = location.hash;
+if(s){
+    if(s!='#index'){
+        var num = parseInt(s.slice(3, 5)) - 1;
+        toggler[num].parentElement.querySelector(".nested").classList.toggle("active");
+        toggler[num].classList.toggle("caret-down");
+    }
+}  
+
+// resize
+window.addEventListener('resize', () => {
+    setInterval(()=>{
+        window.location.reload();
+    }, 100);
+})

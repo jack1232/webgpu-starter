@@ -4,7 +4,7 @@ const glob = require('glob');
 
 var entry = {};
 glob.sync('./src/examples/**/*.ts', {
-    ignore: ['./src/examples/**/*helper*.*']
+    ignore: ['./src/examples/**/*helper*.*', './src/examples/**/*common*.*', './src/examples/**/*data*.*']
 }).map(f => {    
     let mf = f.split('/');
     let len = mf.length;
@@ -32,6 +32,10 @@ module.exports = {
         return `${fpath}/[hash][ext][query]`;
         },
     },
+    target: 'web',
+    performance:{
+        hints: false,
+    },
     mode: "development",
     devtool: "inline-source-map",
     module: {
@@ -41,12 +45,12 @@ module.exports = {
                 use: ["style-loader", "css-loader"],
             },
             {
-                test: /\.(png|jpg|jpeg)$/i,
+                test: /\.(png|jpg|jpeg|ttf)$/i,
                 type: "asset/resource",
             },
             {
                 // set shader files 
-                test: /\.(wgsl|glsl|vs|fs)$/i,
+                test: /\.(wgsl|glsl|vs|fs)$/,
                 type: "asset/source",
             },
             {

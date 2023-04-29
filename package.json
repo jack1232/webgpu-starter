@@ -1,12 +1,12 @@
 {
   "name": "gpu-graphics-with-webgpu-book",
   "version": "1.0.0",
-  "description": "Source code for sample projects included in the Advanced GPU Graphics with WebGPU and WGSL.",
+  "description": "Source code for sample projects included in the book WebGPU by Examples.",
   "scripts": {
     "dev": "webpack --mode development",
     "prod": "webpack --mode production",
     "watch": "webpack --watch --mode production",
-    "serve": "webpack server"
+    "serve": "webpack serve --open --config webpack.config.js"
   },
   "repository": {
     "type": "website",
@@ -35,11 +35,21 @@
   },
   "dependencies": {
     "@types/dat.gui": "^0.7.7",
+    "@types/earcut": "^2.1.1",
+    "@types/opentype.js": "^1.3.4",
     "@types/stats.js": "^0.17.0",
-    "@webgpu/types": "^0.1.24",
-    "dat-gui": "^0.5.0",
+    "@webgpu/types": "^0.1.31",
+    "3d-view-controls": "^2.2.2",
+    "complex.js": "^2.1.1",
+    "cubic-spline": "^3.0.3",
     "dat.gui": "^0.7.9",
+    "earcut": "^2.2.4",
+    "gl-matrix": "^3.4.3",
+    "interpolate-arrays": "^1.0.4",
     "navigo": "^8.11.1",
-    "stats.js": "^0.17.0"
+    "opentype.js": "^1.3.4",
+    "seedrandom": "^3.0.5",
+    "stats.js": "^0.17.0",
+    "webgpu-simplified": "^0.1.33"
   }
 }
