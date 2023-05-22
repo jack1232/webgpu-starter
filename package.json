@@ -1,5 +1,5 @@
 {
-  "name": "gpu-graphics-with-webgpu-book",
+  "name": "webgpu-by-examples-book",
   "version": "1.0.0",
   "description": "Source code for sample projects included in the book WebGPU by Examples.",
   "scripts": {
