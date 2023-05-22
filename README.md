@@ -1,6 +1,6 @@
 # WebGPU Starter Template
 
-This is a starter template for WebGPU, which will be used to build the sample projects in the book "WebGPU by Examples". For details about this book, please visit [https://drxudotnet.com](https://drxudotnet.com). It can also be used as a starter for creating any WebGPU applications using TypeScript and WebPack. 
+This is a starter template for WebGPU, which will be used to build the sample projects in the book "WebGPU by Examples". For details about this book, please visit [https://drxudotnet.com](https://drxudotnet.com). It can also be used as a starting point for creating any WebGPU applications using TypeScript and WebPack. 
 
 ## Getting Started
 
