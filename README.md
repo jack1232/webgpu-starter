@@ -3,7 +3,7 @@
 This is a starter template for WebGPU, which will be used to build the sample projects in the book "WebGPU by Examples". For details about this book, please visit [https://drxudotnet.com](https://drxudotnet.com). It can also be used as a starting point for creating any WebGPU applications using TypeScript and WebPack. 
 
 <p align="center">
-<a href="https://drxudotnet.com"><img src="src/assets/book01.png" width="200" height="246"></a>
+<a href="https://drxudotnet.com"><img src="src/assets/book01.png" width="200" height="245"></a>
 </p>
 
 ## Getting Started
